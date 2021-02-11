@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [message, setmessage] = useState('My lovely app')
+
   return (
     <View style={styles.container}>
-      <Text>My lovely app</Text>
+      <Text>{message}</Text>
+      <Button title="Click Me" onPress={() => { setmessage('My first React Native App goes Here') }} />
       <StatusBar style="auto" />
     </View>
   );
