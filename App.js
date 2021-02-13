@@ -3,12 +3,26 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
+  const [currentGoal, setcurrentGoal] = useState('');
+  const [listofGoals, setlistofGoals] = useState([]);
   
+  const currentGoalChangeHandler = (newGoal) => {
+    setcurrentGoal(newGoal)
+  }
+  
+  const addGoalToList = () => {
+    setlistofGoals(listofGoals => [...listofGoals, currentGoal])
+  }
+
   const styles = StyleSheet.create({
+    root:{
+      padding:20
+    },
+
     inputContainer: {
-      padding: 50,
+      marginVertical:30,
       flexDirection: 'row',
-      justifyContent: "space-between",
+      justifyContent: "space-evenly",
       alignItems: 'center'
     },
 
@@ -16,20 +30,33 @@ export default function App() {
       borderBottomColor: "black",
       borderBottomWidth: 1,
       padding: 10,
-      width: '80%'
+      flex:3,
+      marginRight:10,
+    },
+    inputButton:{
+      flex:1,
+    },
+    listItems: {
+      marginVertical:10,
+      backgroundColor:"#ccc",
+      borderRadius:10,
+      borderWidth:1,
+      padding:10,
     }
   })
-  
+
   return (
-    <View>
+    <View style={styles.root}>
       <View style={styles.inputContainer}>
         {/* alignItems for cross axis */}
         {/* justify content for main axis */}
-        <TextInput placeholder="Enter your Goal" style={styles.input}></TextInput>
-        <Button title="ADD"></Button>
+        <TextInput placeholder="Enter your Goal" style={styles.input}
+          onChangeText={currentGoalChangeHandler}
+          value={currentGoal}></TextInput>
+        <Button title="ADD" onPress={addGoalToList} style={styles.inputButton}></Button>
       </View>
       <View>
-        <Text>Display Items</Text>
+        {listofGoals.map((goal) => <Text style={styles.listItems} key={goal}>{goal}</Text>)}
       </View>
     </View>
   );
