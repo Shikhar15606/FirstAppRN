@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, StyleSheet } from 'react-native';
+import { Text, View, FlatList, StyleSheet, Touchable, TouchableOpacity } from 'react-native';
 const ListGoals = (props) => {
     const styles = StyleSheet.create({
         listItems: {
@@ -15,7 +15,9 @@ const ListGoals = (props) => {
             keyExtractor={(item, index) => { return item.mykey }}
             data={props.listofGoals}
             renderItem={itemData => (
-                <Text style={styles.listItems}>{itemData.item.value}</Text>
+                <TouchableOpacity onPress={props.removeGoalfromList.bind(this, itemData.item.mykey)}>
+                    <Text style={styles.listItems}>{itemData.item.value}</Text>
+                </TouchableOpacity>
             )}
         />
     );

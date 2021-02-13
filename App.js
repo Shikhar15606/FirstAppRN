@@ -11,6 +11,10 @@ export default function App() {
     setlistofGoals(listofGoals => [...listofGoals, { mykey: Math.random().toString(), value: currentGoal }])
   }
 
+  const removeGoalfromList = (goalid) => {
+    setlistofGoals(listofGoals => listofGoals.filter(goal => goal.mykey !== goalid))
+  }
+
   const styles = StyleSheet.create({
     root: {
       paddingVertical: 50,
@@ -21,7 +25,7 @@ export default function App() {
   return (
     <View style={styles.root}>
       <InputGoals addGoalToList={addGoalToList} />
-      <ListGoals listofGoals={listofGoals} />
+      <ListGoals listofGoals={listofGoals} removeGoalfromList={removeGoalfromList} />
     </View>
   );
 }
