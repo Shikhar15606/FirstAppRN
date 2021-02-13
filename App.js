@@ -3,14 +3,29 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default function App() {
-  const [message, setmessage] = useState('My lovely app')
+  
+  const styles = StyleSheet.create({
+    inputContainer: {
+      padding: 50,
+      flexDirection: 'row',
+      justifyContent: "space-between",
+      alignItems: 'center'
+    },
 
+    input: {
+      borderBottomColor: "black",
+      borderBottomWidth: 1,
+      padding: 10,
+      width: '80%'
+    }
+  })
+  
   return (
     <View>
-      <View style={{ padding: 50, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center' }}>
+      <View style={styles.inputContainer}>
         {/* alignItems for cross axis */}
         {/* justify content for main axis */}
-        <TextInput placeholder="Enter your Goal" style={{ borderBottomColor: "black", borderBottomWidth: 1, padding: 10, width: '80%' }}></TextInput>
+        <TextInput placeholder="Enter your Goal" style={styles.input}></TextInput>
         <Button title="ADD"></Button>
       </View>
       <View>
